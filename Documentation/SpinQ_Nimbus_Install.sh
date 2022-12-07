@@ -14,7 +14,7 @@ sudo apt install unzip
 unzip --version
 unzip SpinQ.zip
 cd SpinQKit
-python3 setup.py install --user
+python3 setup.py install --user -y
 
 #Testing (GettingStarted.py is a copy of the basic circuit from GettingStarted.md - you will have to create this file manually)
 cd doc

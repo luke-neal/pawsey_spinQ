@@ -1,2 +1,6 @@
-networkx==2.8.8
-matplotlib==3.6.2
+name: example-environment
+channels:
+  - conda-forge
+dependencies:
+  - networkx
+  - matplotlib

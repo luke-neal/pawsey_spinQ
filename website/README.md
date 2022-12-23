@@ -44,3 +44,14 @@ Supervisor: Edric Matwiejew
     ```
     pip install -r requirements.txt
     ```
+
+5. Run the Application:
+
+    Development
+    ```
+    flask run
+    ```
+    Production
+    ```
+    gunicorn -w 1 app:app
+    ```

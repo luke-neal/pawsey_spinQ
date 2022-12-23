@@ -47,11 +47,11 @@ Supervisor: Edric Matwiejew
 
 5. Run the Application:
 
-    Development
+    Development Server
     ```
     flask run
     ```
-    Production
+    Production Server
     ```
-    gunicorn -w 1 app:app
+    systemctl start apache2
     ```

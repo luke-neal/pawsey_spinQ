@@ -49,3 +49,6 @@ Execute the following command:
 ```python
 py setup.py install --user
 ```
+If you run into issues running this command, try some of these steps:
+ - Run the command from inside a developer terminal (using Visual Studio)
+ - Make sure you have the correct version of igraph installed (0.9.10)

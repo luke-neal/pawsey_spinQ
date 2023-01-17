@@ -1,7 +1,6 @@
 import os
 from flask import Flask
 from werkzeug.middleware.proxy_fix import ProxyFix
-from sendCircuit import sendCircuit
 
 app = Flask(__name__)
 

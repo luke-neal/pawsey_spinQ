@@ -10,12 +10,12 @@ import socket
 import os
 import time
 
-HOST = "124.188.226.203"  # The server's hostname or IP address
+HOST = "120.16.15.81"  # The server's hostname or IP address
 PORT = 65432  # The port used by the server
 
 BUFFER_SIZE = 4096
 
-def sendCircuit(file):
+def send_circuit(file):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((HOST, PORT))
         s.sendall(f"{file.filename}".encode())
@@ -31,20 +31,20 @@ ALLOWED_EXTENSIONS = {'qasm'}
 def index():
     return render_template('index.html')
 
-@app.route("/submitcircuit")
-def submit_circuit():
-    return render_template('submit_circuit.html')
+@app.route("/submit")
+def submit():
+    return render_template('submit.html')
 
-@app.route('/circuitresult', methods=['POST', 'GET'])
-def circuit_result():
+@app.route('/result', methods=['POST', 'GET'])
+def result():
     if 'file' not in request.files:
         return 'No file uploaded'
     file = request.files['file']
     if file.filename == '':
         return 'No file selected'
     if file and allowed_file(file.filename):
-        result = sendCircuit(file)
-        return render_template('circuit_result.html', result=result)
+        result = send_circuit(file)
+        return render_template('result.html', result=result)
     return 'Invalid file type'
 
 def allowed_file(filename):

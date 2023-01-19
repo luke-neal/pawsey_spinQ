@@ -31,6 +31,10 @@ ALLOWED_EXTENSIONS = {'qasm'}
 def index():
     return render_template('index.html')
 
+@app.route("/qaoa")
+def qaoa():
+    return render_template('qaoa.html')
+
 @app.route("/submit")
 def submit():
     return render_template('submit.html')

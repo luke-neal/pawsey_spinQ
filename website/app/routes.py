@@ -5,13 +5,13 @@ from flask import (
     request
 )
 
+from subprocess import call
+
 import sys
 import socket
-import os
-import time
 
-HOST = "120.16.15.81"  # The server's hostname or IP address
-PORT = 65432  # The port used by the server
+HOST = "154.6.151.201"  # The server's hostname or IP address
+PORT = 1337  # The port used by the server
 
 BUFFER_SIZE = 4096
 
@@ -33,6 +33,7 @@ def index():
 
 @app.route("/qaoa")
 def qaoa():
+    call(['jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/QAOA.ipynb'])
     return render_template('qaoa.html')
 
 @app.route("/submit")

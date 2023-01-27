@@ -31,6 +31,16 @@ ALLOWED_EXTENSIONS = {'qasm'}
 def index():
     return render_template('index.html')
 
+@app.route("/qcintro")
+def qcintro():
+    call(['jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/QC_Introduction.ipynb'])
+    return render_template('qcintro.html')
+
+@app.route("/spinqintro")
+def spinqintro():
+    call(['sudo', 'jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/Using_SpinQ.ipynb'])
+    return render_template('spinqintro.html')
+
 @app.route("/qaoa")
 def qaoa():
     call(['jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/QAOA.ipynb'])

@@ -33,18 +33,22 @@ def index():
 
 @app.route("/qcintro")
 def qcintro():
-    call(['jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/QC_Introduction.ipynb'])
+    call(['jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/qc_introduction.ipynb'])
     return render_template('qcintro.html')
 
 @app.route("/spinqintro")
 def spinqintro():
-    call(['sudo', 'jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/Using_SpinQ.ipynb'])
+    call(['sudo', 'jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/using_spinQ.ipynb'])
     return render_template('spinqintro.html')
 
 @app.route("/qaoa")
 def qaoa():
-    call(['jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/QAOA.ipynb'])
+    call(['jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/qaoa.ipynb'])
     return render_template('qaoa.html')
+
+@app.route("/create")
+def create():
+    return render_template('create.html')
 
 @app.route("/submit")
 def submit():

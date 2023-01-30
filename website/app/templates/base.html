@@ -44,10 +44,10 @@
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Custom Circuit</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
-                    <a href="{{ url_for('submit') }}">Send a Circuit to SpinQ</a>
+                    <a href="{{ url_for('create') }}">Circuit Builder</a>
                 </li>
-                <li>
-                    <a href="#">Circuit Builder</a>
+				<li>
+                    <a href="{{ url_for('submit') }}">Submit a Circuit</a>
                 </li>
               </ul>
 	          </li>

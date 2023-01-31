@@ -26,6 +26,9 @@
 					<img src="{{ url_for('static', filename='images/UP-QCC.svg') }}">
 				</a></h1>
 	        <ul class="list-unstyled components mb-5">
+				<li>
+					<a href="/">Home</a>
+					</li>
 	          <li class="active">
 	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Training</a>
 	            <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -52,15 +55,15 @@
               </ul>
 	          </li>
 	          <li>
-              <a href="#">Contact</a>
+              <a href="{{ url_for('contact') }}">Contact</a>
 	          </li>
 	        </ul>
 
-	        <div class="footer">
-	        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	        <!--<div class="footer">
+	        	<p>
 						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-	        </div>
+						  </p>
+	        </div>-->
 
 	      </div>
     	</nav>

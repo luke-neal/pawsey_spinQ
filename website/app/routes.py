@@ -9,9 +9,10 @@ from subprocess import call
 
 import sys
 import socket
+import ast
 
-HOST = "154.6.151.201"  # The server's hostname or IP address
-PORT = 1337  # The port used by the server
+HOST = "124.188.226.203"  # The server's hostname or IP address
+PORT = 65432  # The port used by the server
 
 BUFFER_SIZE = 4096
 
@@ -33,17 +34,17 @@ def index():
 
 @app.route("/qcintro")
 def qcintro():
-    call(['jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/qc_introduction.ipynb'])
+    call(['jupyter', 'nbconvert', '--to', 'html', '/data/Pawsey_SpinQ/website/app/static/jupyter/qc_introduction.ipynb'])
     return render_template('qcintro.html')
 
 @app.route("/spinqintro")
 def spinqintro():
-    call(['sudo', 'jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/using_spinQ.ipynb'])
+    call(['jupyter', 'nbconvert', '--to', 'html', '/data/Pawsey_SpinQ/website/app/static/jupyter/using_spinQ.ipynb'])
     return render_template('spinqintro.html')
 
 @app.route("/qaoa")
 def qaoa():
-    call(['jupyter', 'nbconvert', '--to', 'html', 'app/static/jupyter/qaoa.ipynb'])
+    call(['jupyter', 'nbconvert', '--to', 'html', '/data/Pawsey_SpinQ/website/app/static/jupyter/qaoa.ipynb'])
     return render_template('qaoa.html')
 
 @app.route("/create")
@@ -63,8 +64,18 @@ def result():
         return 'No file selected'
     if file and allowed_file(file.filename):
         result = send_circuit(file)
-        return render_template('result.html', result=result)
+        result_dict = ast.literal_eval(result)
+        
+        labels = list(result_dict.keys()),
+        labels = labels[0]
+        values = list(result_dict.values())
+
+        return render_template('result.html', labels=labels, values=values)
     return 'Invalid file type'
+
+@app.route("/contact")
+def contact():
+    return render_template('contact.html')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

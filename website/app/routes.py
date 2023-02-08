@@ -1,3 +1,6 @@
+import os 
+os.environ['MPLCONFIGDIR'] = '/var/www/.config/matplotlib'
+
 from app import app
 
 from flask import (
@@ -6,10 +9,15 @@ from flask import (
 )
 
 from subprocess import call
+from qiskit import QuantumCircuit
+from time import time
 
 import sys
 import socket
 import ast
+
+import base64
+from io import BytesIO
 
 HOST = "124.188.226.203"  # The server's hostname or IP address
 PORT = 65432  # The port used by the server
@@ -63,14 +71,34 @@ def result():
     if file.filename == '':
         return 'No file selected'
     if file and allowed_file(file.filename):
+        # Get result from SpinQ
         result = send_circuit(file)
         result_dict = ast.literal_eval(result)
-        
-        labels = list(result_dict.keys()),
-        labels = labels[0]
-        values = list(result_dict.values())
 
-        return render_template('result.html', labels=labels, values=values)
+        keys = list(result_dict.keys())
+        qubits = len(keys[0])
+        parsed_results = {state:0 for state in get_binary_numbers(qubits)}
+
+        for key in result_dict.keys():
+            parsed_results[key] = result_dict[key]
+
+        labels = list(parsed_results.keys()),
+        labels = labels[0]
+        values = list(parsed_results.values())
+
+        # Render circuit as image
+        file.seek(0)
+        qasm_circuit = file.read().decode()
+        qiskit_circuit = QuantumCircuit.from_qasm_str(qasm_circuit)
+        fig = qiskit_circuit.draw(output='mpl')
+        buf = BytesIO()
+        fig.savefig(buf, format="jpg")
+        circuit = base64.b64encode(buf.getbuffer())
+
+        #return f"<img src='data:image/png;base64,{circuit}'/>"
+        print('hi')
+        #return render_template('test.html', circuit=circuit.decode('utf-8'))
+        return render_template('result.html', labels=labels, values=values, circuit=circuit.decode('utf-8'))
     return 'Invalid file type'
 
 @app.route("/contact")
@@ -79,6 +107,12 @@ def contact():
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def get_binary_numbers(n):
+    format_str = f"0{n}b"
+    max_binary_number = 2**n
+    binlist = [list(format(i, format_str)) for i in range(max_binary_number)]
+    return ["".join(l) for l in binlist]
 
 if __name__ == '__main__':
     app.run(debug=True)

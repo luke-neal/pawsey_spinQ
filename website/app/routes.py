@@ -57,6 +57,7 @@ def qaoa():
 
 @app.route("/create")
 def create():
+    call(['jupyter', 'nbconvert', '--to', 'html', '/data/Pawsey_SpinQ/website/app/static/jupyter/circuit_builder.ipynb'])
     return render_template('create.html')
 
 @app.route("/submit")
@@ -95,9 +96,6 @@ def result():
         fig.savefig(buf, format="jpg")
         circuit = base64.b64encode(buf.getbuffer())
 
-        #return f"<img src='data:image/png;base64,{circuit}'/>"
-        print('hi')
-        #return render_template('test.html', circuit=circuit.decode('utf-8'))
         return render_template('result.html', labels=labels, values=values, circuit=circuit.decode('utf-8'))
     return 'Invalid file type'
 

@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>using_spinQ</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>circuit_builder</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14596,12 +14596,21 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Using-the-SpinQ-Quantum-Computers">Using the SpinQ Quantum Computers<a class="anchor-link" href="#Using-the-SpinQ-Quantum-Computers">&#182;</a></h1><p>This notebook provides an introduction to the SpinQ Triangulum quantum computer, along with how they can be used to run quantum circuits. It is intended for those who have an understanding of how quantum logic gates work, and would like to create some basic circuits to run on a quantum computer.</p>
-<h2 id="1.-SpinQ-Triangulum">1. SpinQ Triangulum<a class="anchor-link" href="#1.-SpinQ-Triangulum">&#182;</a></h2><div>
-<img src="../images/Triangulum.png"/>
+<h1 id="Using-pyQuirk-to-Create-and-Submit-Quantum-Circuits">Using pyQuirk to Create and Submit Quantum Circuits<a class="anchor-link" href="#Using-pyQuirk-to-Create-and-Submit-Quantum-Circuits">&#182;</a></h1><p>Once you have opened up an interactive session, navigate to the 'quirk.ipynb' file. After you run the first three blocks of code, the pyQuirk app should be loaded:</p>
+<center><div>
+<img src="../images/quirk.png" width="1000"/>
 </div>
-<p>Image courtesy of John Tanner. Poster displayed at UWA Physics building.</p>
-<h2 id="2.-Writing-Quantum-Circuits">2. Writing Quantum Circuits<a class="anchor-link" href="#2.-Writing-Quantum-Circuits">&#182;</a></h2>
+</center>
+<br>
+<p>You can use the app to create quantum circuits of your choosing, though keep in mind that Triangulum is a 3-qubit quantum computer. Once you are happy with your circuit, click the export button and copy the OpenQASM circuit representation:</p>
+<center>
+<div>
+<img src="../images/qasm_export.png" width="800"/>
+</div>
+</center>
+<br>
+<p>Paste it in the fourth block of code, just underneath the pyQuirk app. Once you have done this, run the block of code and it should generate a 'circuit.qasm' file, which you can navigate to in Binder and download. You can then upload and submit this circuit via the 'Submit a Circuit' section of the website.</p>
+
 </div>
 </div>
 </div>

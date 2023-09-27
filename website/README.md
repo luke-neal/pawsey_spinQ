@@ -1,6 +1,6 @@
 # SpinQ Web-Hosted Quantum Computing Training
 
-Developed by Luke Antoncich & Eric Pan
+Developed by Luke Antoncich
 Supervisor: Edric Matwiejew
 
 # How to Run Locally
